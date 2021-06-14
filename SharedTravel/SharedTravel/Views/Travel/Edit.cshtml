@@ -1,0 +1,63 @@
+﻿@model SharedTravel.Models.Travel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Travel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CityFrom" class="control-label"></label>
+                <input asp-for="CityFrom" class="form-control" />
+                <span asp-validation-for="CityFrom" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AddressFrom" class="control-label"></label>
+                <input asp-for="AddressFrom" class="form-control" />
+                <span asp-validation-for="AddressFrom" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DepartureTime" class="control-label"></label>
+                <input asp-for="DepartureTime" class="form-control" />
+                <span asp-validation-for="DepartureTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CityTo" class="control-label"></label>
+                <input asp-for="CityTo" class="form-control" />
+                <span asp-validation-for="CityTo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AddressTo" class="control-label"></label>
+                <input asp-for="AddressTo" class="form-control" />
+                <span asp-validation-for="AddressTo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ArrivalTime" class="control-label"></label>
+                <input asp-for="ArrivalTime" class="form-control" />
+                <span asp-validation-for="ArrivalTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FreeSeatsCount" class="control-label"></label>
+                <input asp-for="FreeSeatsCount" class="form-control" />
+                <span asp-validation-for="FreeSeatsCount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Update" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

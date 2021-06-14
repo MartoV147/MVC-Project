@@ -1,0 +1,100 @@
+﻿@model TravelsList
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a> | <a asp-action="OtherTravels">Refresh Search</a>
+</p>
+<div class="form-group text-danger">
+    @Html.ValidationMessage("CountError")
+</div>
+<form asp-action="Search">
+    Name: @Html.TextBoxFor(x => x.SearchedName)
+    <input type="submit" value="Search" class="btn btn-primary" />
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Travels.FirstOrDefault().Creator)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Travels.FirstOrDefault().CityFrom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Travels.FirstOrDefault().AddressFrom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Travels.FirstOrDefault().DepartureTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Travels.FirstOrDefault().CityTo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Travels.FirstOrDefault().AddressTo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Travels.FirstOrDefault().ArrivalTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Travels.FirstOrDefault().FreeSeatsCount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Travels.FirstOrDefault().Price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Travels)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Creator.FirstName)
+
+                    @Html.DisplayFor(modelItem => item.Creator.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CityFrom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AddressFrom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DepartureTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CityTo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AddressTo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArrivalTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FreeSeatsCount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @if (SharedTravel.Controllers.HomeController.Username == item.Creator.Username)
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.TravelId">Edit</a>
+                        <a asp-action="Details" asp-route-id="@item.TravelId"> Details </a>
+                        <a asp-action="Delete" asp-route-id="@item.TravelId"> Delete </a>
+                    }
+                    else
+                    {
+                        <a asp-action="Apply" asp-route-id="@item.TravelId">Apply</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
